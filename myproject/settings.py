@@ -4,12 +4,13 @@ Django settings for myproject project.
 
 import os
 from pathlib import Path
+from decouple import config
 
 # --- Base directory ---
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # --- Security ---
-SECRET_KEY = 'django-insecure-ryx24en-yc*brfyg3706a5ua_8-whhx7_il@7jn-ut$6o%$jyd'
+SECRET_KEY = config("SECRET_KEY")
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -114,8 +115,8 @@ STATICFILES_DIRS = [
 
 
 
-STRIPE_PUBLIC_KEY = "pk_test_51SPXyfLq6FA0JAFevZQwIGF6isXpUjulcXclm7XGgYfJFLgmH2ernaakuPsZ13Uxy8A7hJOZEmNC30QyLuilpwtd00GK7Upcs3"
-STRIPE_SECRET_KEY = "sk_test_51SPXyfLq6FA0JAFedd8P0J3hsFoSrmpXqqqIDAjaVjDU3MKF5X1aP6jks5fKP6u4zbmW5UgVZ409rKVd0ACaya9i00vUN3XR35"
+STRIPE_PUBLIC_KEY = config("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY")
 
 
 # Static files (CSS, JavaScript, Images)
@@ -124,6 +125,22 @@ EMAIL_BACKEND = "emails.resend_backend.ResendEmailBackend"
 
 # RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
 
-RESEND_API_KEY = "re_Px1ZvZ8b_N97WP4XZ3kSsE4dyPmWApQ1p"
-HOSTMAIL = "mail@gifshop.msk.solutions"
+RESEND_API_KEY = config("RESEND_API_KEY")
+
+MYHOSTEMAIL = config("MYHOSTEMAIL")
+
+
+# settings.py (add near STATIC_URL)
+STATIC_URL = '/static/'
+
+# Local static files (for development)
+STATICFILES_DIRS = [
+    BASE_DIR / 'myapp' / 'static',
+]
+
+# Collected static files (for production)
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
