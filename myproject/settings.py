@@ -14,6 +14,12 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://gifshop.up.railway.app',
+]
+
+
 # --- Installed apps ---
 INSTALLED_APPS = [
     'django.contrib.admin',
