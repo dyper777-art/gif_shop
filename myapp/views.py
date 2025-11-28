@@ -178,7 +178,7 @@ def register_view(request):
 
         try:
             resend.Emails.send({
-                "from": settings.HOSTMAIL,
+                "from": settings.MYHOSTEMAIL,
                 "to": [email],
                 "subject": "Activate your account",
                 "html": f"""
@@ -325,7 +325,7 @@ def password_reset_view(request):
                     resend.api_key = settings.RESEND_API_KEY
                     try:
                         resend.Emails.send({
-                            "from": settings.HOSTMAIL,
+                            "from": settings.MYHOSTEMAIL,
                             "to": [user.email],
                             "subject": "Password Reset",
                             "html": f"<p>Hello {user.username},</p>"
