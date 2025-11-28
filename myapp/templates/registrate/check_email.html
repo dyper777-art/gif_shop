@@ -1,0 +1,30 @@
+{% extends 'base_sec.html' %}
+
+{% load static %}
+
+{% block title %}Create User Complete{% endblock %}
+
+{% block content %}
+
+   <div class="row">
+        <div class="col-md-6">
+          <div class="form_container">
+           <p>Thanks for registering! Check your activation link in your email {{ email }}.</p>
+
+              <shark-icon-container data-sharkidcontainer="__2" style="position: absolute;"></shark-icon-container></div>
+              
+
+              
+            </form>
+
+            <div class="col-lg-12 col-md-6 mt-5">
+                <p>Back to <a href="{% url 'login' %}">Login here</a></p>
+                
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+{% endblock %}

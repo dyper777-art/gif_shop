@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block subscription_active %} active {% endblock %}
+
+{% block content %}
+
+<section class="offer_section layout_padding-bottom">
+    <div class="offer_container">
+      <div class="container ">
+        <div class="row">
+            {% for plan in plans %}
+
+                        {% if plan.name != 'Free' %}
+          <div class="col-md-6">
+            <div class="box pl-5">
+              <div class="img-box">
+                {% if plan.image %}
+                    <img src="{{ plan.image.url }}" alt="">
+                {% else %}
+                    <img src="{% static 'myapp/default.jpg' %}" alt="">  <!-- fallback image -->
+                {% endif %}
+              </div>
+              <div class="detail-box ml-3">
+                <h5>
+                  {{ plan.name }}
+                </h5>
+                <h5>
+                  ${{ plan.price }} / month
+                </h5>
+                <h6>
+                  <span>{{plan.daily_limit}}</span> Per Day
+                </h6>
+                <form class="mt-2" method="POST" action="{% url 'create_checkout' plan.id %}" style="display:inline; cursor:pointer;">
+                {% csrf_token %}
+                <a class="ml-5" {% if current_subscription and current_subscription.plan.id == plan.id %}disabled{% endif %}>
+                    <button type="submit" class="btn custom-btn text-light"
+                        {% if current_subscription and current_subscription.plan.id == plan.id %}disabled{% endif %}>
+                        {% if current_subscription and current_subscription.plan.id == plan.id %}
+                            Current Plan
+                        {% else %}
+                            Subscribe
+                        {% endif %}
+                    </button>
+
+                </a>
+                </form>
+                                        
+
+              </div>
+            </div>
+          </div>
+
+          {% endif %}
+
+                    {% endfor %}
+
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+        
+{% endblock %}
+
+
+

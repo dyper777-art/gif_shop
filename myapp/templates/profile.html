@@ -1,0 +1,40 @@
+{% extends 'base_sec.html' %}
+
+{% block content %}
+
+
+<section class="contact-section section-padding pt-0">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12 mx-auto">
+                        <div class="section-title-wrap mb-5">
+                            <h1>Profile</h1>
+                        </div>
+
+                        <div class="section-title-wrap mb-5"> 
+                            <i><h4>USERNAME : {{user.username}} </h4></i>
+                            <i><h4>EMAIL : {{user.email}} </h4></i>
+                            <i><h4>SUBSCRIPTION : {{subscription.plan}} </h4></i>
+                            <i><h4>START DATE : {{subscription.start_date}} </h4></i>
+                            <i><h4>END DATE : {{subscription.end_date}} </h4></i>
+                            <i><h4>DAILY LIMIT : {{subscription.downloads_today}}/{{subscription_plan.daily_limit}}</h4></i>
+                        </div>
+
+                        <form method="GET" action="{% url 'logout' %}" class="custom-form contact-form" role="form">
+                            <div class="row">
+                                <div class="col-lg-4 col-12 ms-auto">
+                                    <button type="submit" class="form-control bg-danger text-light rounded">Logout</button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+{% endblock %}
